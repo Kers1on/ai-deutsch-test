@@ -1,0 +1,22 @@
+import { useState } from "react";
+import Nav from "./components/Nav";
+import Main from "./components/Main";
+import { QuestionType } from "./types/test";
+
+function App() {
+  const [questions, setQuestions] = useState<QuestionType[]>([]);
+  const [loading, setLoading] = useState<boolean>(false);
+
+  return (
+    <div className="flex min-h-screen">
+      <Nav
+        questions={questions}
+        setQuestions={setQuestions}
+        setLoading={setLoading}
+      />
+      <Main questions={questions} loading={loading} />
+    </div>
+  );
+}
+
+export default App;
