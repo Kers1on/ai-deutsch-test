@@ -19,6 +19,12 @@ Create .env and fill it with your Huggingface API Key
 HF_TOKEN="hf_xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"
 ```
 
+To run an app:
+
+```bash
+npm run dev
+```
+
 ## Gallery
 
 ![alt text](./readme-img/image01.png)
