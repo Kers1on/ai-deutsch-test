@@ -13,6 +13,12 @@ cd ai-deutsch-test
 npm i
 ```
 
+(Optional) If you want to use Demo version with no API requests to HF make sure you set in App.tsx
+
+```tsx
+const isDemo = true;
+```
+
 Create .env and fill it with your Huggingface API Key
 
 ```
