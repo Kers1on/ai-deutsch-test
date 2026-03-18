@@ -83,6 +83,7 @@ const Nav: React.FC<NavProps> = ({
           <select
             name="level"
             id="level"
+            disabled={isDemo}
             value={settings.level}
             onChange={handleChange}
             className="
@@ -97,6 +98,12 @@ const Nav: React.FC<NavProps> = ({
             focus:ring-2
             focus:ring-blue-500
             transition
+
+            disabled:bg-gray-800
+            disabled:text-gray-400
+            disabled:border-gray-600
+            disabled:cursor-not-allowed
+            disabled:opacity-60
           "
           >
             <option value="a1">A1</option>
@@ -130,8 +137,12 @@ const Nav: React.FC<NavProps> = ({
             focus:ring-2
             focus:ring-blue-500
             transition
-            disabled:opacity-50
+            
+            disabled:bg-gray-800
+            disabled:text-gray-400
+            disabled:border-gray-600
             disabled:cursor-not-allowed
+            disabled:opacity-60
           "
           >
             <option value="multiple_choice">Multiple Choice</option>
@@ -153,6 +164,7 @@ const Nav: React.FC<NavProps> = ({
           <select
             name="topic"
             id="topic"
+            disabled={isDemo}
             value={settings.topic}
             onChange={handleChange}
             className="
@@ -167,6 +179,12 @@ const Nav: React.FC<NavProps> = ({
             focus:ring-2
             focus:ring-blue-500
             transition
+
+            disabled:bg-gray-800
+            disabled:text-gray-400
+            disabled:border-gray-600
+            disabled:cursor-not-allowed
+            disabled:opacity-60
           "
           >
             <option value="conjugation">Konjugation</option>
@@ -187,6 +205,7 @@ const Nav: React.FC<NavProps> = ({
           <select
             name="count"
             id="count"
+            disabled={isDemo}
             value={settings.count}
             onChange={handleChange}
             className="
@@ -201,6 +220,12 @@ const Nav: React.FC<NavProps> = ({
             focus:ring-2
             focus:ring-blue-500
             transition
+
+            disabled:bg-gray-800
+            disabled:text-gray-400
+            disabled:border-gray-600
+            disabled:cursor-not-allowed
+            disabled:opacity-60
           "
           >
             <option value={5}>5</option>
