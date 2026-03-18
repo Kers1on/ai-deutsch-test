@@ -1,13 +1,20 @@
 import { useState } from "react";
 import { QuestionType } from "../types/test";
+import { mockQuestions } from "../services/mockQuestions";
 
 type NavProps = {
+  isDemo: boolean;
   questions: QuestionType[];
   setQuestions: React.Dispatch<React.SetStateAction<QuestionType[]>>;
   setLoading: React.Dispatch<React.SetStateAction<boolean>>;
 };
 
-const Nav: React.FC<NavProps> = ({ questions, setQuestions, setLoading }) => {
+const Nav: React.FC<NavProps> = ({
+  isDemo,
+  questions,
+  setQuestions,
+  setLoading,
+}) => {
   const [settings, setSettings] = useState({
     level: "a1",
     type: "multiple_choice",
@@ -28,27 +35,32 @@ const Nav: React.FC<NavProps> = ({ questions, setQuestions, setLoading }) => {
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
-    try {
-      // To display a loading animation during task generation without clearing previous ones
-      if (questions.length !== 0) {
-        setQuestions([]);
+    if (!isDemo) {
+      try {
+        // To display a loading animation during task generation without clearing previous ones
+        if (questions.length !== 0) {
+          setQuestions([]);
+        }
+
+        setLoading(true);
+
+        const data = await window.api.generateTest(settings);
+
+        const questionsResponse: { questions: QuestionType[] } = JSON.parse(
+          data.choices[0].message.content,
+        );
+
+        setQuestions(questionsResponse.questions);
+      } catch (error) {
+        console.error("AI generation error:", error);
+      } finally {
+        setLoading(false);
       }
-
-      setLoading(true);
-
-      const data = await window.api.generateTest(settings);
-
-      const questionsResponse: { questions: QuestionType[] } = JSON.parse(
-        data.choices[0].message.content,
+    } else {
+      questions = mockQuestions(
+        settings.type as "multiple_choice" | "fill_blank",
       );
-
-      setQuestions(questionsResponse.questions);
-
-      console.log(questionsResponse.questions);
-    } catch (error) {
-      console.error("AI generation error:", error);
-    } finally {
-      setLoading(false);
+      setQuestions(questions);
     }
   };
 

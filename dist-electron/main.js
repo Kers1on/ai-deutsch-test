@@ -1,5 +1,4 @@
 import { ipcMain, app, BrowserWindow } from "electron";
-import { createRequire } from "node:module";
 import { fileURLToPath } from "node:url";
 import path$2 from "node:path";
 import require$$1 from "util";
@@ -17643,7 +17642,6 @@ ipcMain.handle("generate-test", async (_, settings) => {
   );
   return response.data;
 });
-createRequire(import.meta.url);
 const __dirname$1 = path$2.dirname(fileURLToPath(import.meta.url));
 process.env.APP_ROOT = path$2.join(__dirname$1, "..");
 const VITE_DEV_SERVER_URL = process.env["VITE_DEV_SERVER_URL"];

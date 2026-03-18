@@ -4,12 +4,15 @@ import Main from "./components/Main";
 import { QuestionType } from "./types/test";
 
 function App() {
+  const isDemo = false; // if TRUE - it's not allow to use AI, but mock questions
+
   const [questions, setQuestions] = useState<QuestionType[]>([]);
   const [loading, setLoading] = useState<boolean>(false);
 
   return (
     <div className="flex min-h-screen">
       <Nav
+        isDemo={isDemo}
         questions={questions}
         setQuestions={setQuestions}
         setLoading={setLoading}
